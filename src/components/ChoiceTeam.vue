@@ -1,41 +1,43 @@
 <template>
   <div class="ChoiceTeam container">
-    <div class="notification">Report your assitance and subscribe a team before Sunday!</div>
+    <div class="notification">Indiquez votre présence en vous inscrivant à une équipe chaque semaine (avant le dimanche!)</div>
     <div class="columns is-multiline is-mobile is-centered">
       <div class="column is-three-quarters">
         <section>
-          <b-field label="Nickname">
+          <b-field label="Ton surnom">
             <b-input v-model="form.nickname"></b-input>
           </b-field>
         </section>
       </div>
       <div class="column is-three-quarters">
         <div class="buttons is-centered">
-          <b-button type="is-success" @click="savePlayerSlot(1)">Team 1</b-button>
-          <b-button type="is-info" @click="savePlayerSlot(2)">Team 2</b-button>
-          <b-button type="is-danger" @click="savePlayerSlot(3)">Team 3</b-button>
+          <b-button type="is-success" @click="savePlayerSlot(1)">Équipe 1 ({{stats.teamNumbers[0]}})</b-button>
+          <b-button type="is-info" @click="savePlayerSlot(2)">Équipe 2 ({{stats.teamNumbers[1]}})</b-button>
+          <b-button type="is-danger" @click="savePlayerSlot(3)">Équipe 3 ({{stats.teamNumbers[2]}})</b-button>
         </div>
       </div>
     </div>
-    <div class="notification">There are {{stats.assitances}} players going to the next match</div>
-    <div class="columns is-multiline is-mobile">
-      <div class="column is-one-third">
-        <div class="notification">Team 1 has {{stats.teamNumbers[0]}}</div>
+    <div class="notification">Il y a {{stats.match.players.length}} joueurs qui vont au prochain match</div>
+    <div class="columns is-multiline is-mobile is-centered">
+      <div class="column is-two-third">
+        <team-list :data="formattedData"/>
       </div>
-      <div class="column is-one-third">
-        <div class="notification">Team 2 has {{stats.teamNumbers[1]}}</div>
-      </div>
-      <div class="column is-one-third">
-        <div class="notification">Team 3 has {{stats.teamNumbers[2]}}</div>
+      <div class="column is-two-third">
+        <map/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { savePlayerSlot, call } from "../api";
-
+import { call } from "../api";
+import TeamList from "./TeamList";
+import Map from './Map'
 export default {
+  components:{
+    TeamList,
+    Map
+  },
   name: "ChoiceTeam",
   data() {
     return {
@@ -44,7 +46,9 @@ export default {
       },
       stats: {
         teamNumbers: [0, 0, 0],
-        assitances: 0
+        match:{
+          players:[]
+        }
       },
       form: {
         nickname: "",
@@ -53,21 +57,38 @@ export default {
     };
   },
   async created() {
-    Object.assign(this.$data, await call("getAppHomeData"));
+    this.update()
+  },
+  computed:{
+    formattedData(){
+      return this.stats.match.players.map(p=>{
+        p.nickname = p.nickname.charAt(0).toUpperCase() + p.nickname.substr(1)
+        return p
+      })
+    }
   },
   methods: {
+    async update(){
+      Object.assign(this.$data, await call("getAppHomeData"));
+    },
     async savePlayerSlot(teamNumber) {
-      this.form.teamNumber = teamNumber;
-      if (!this.form.nickname)
+      
+      if (!this.form.nickname){
         return this.$buefy.toast.open({
-          message: "nickname required",
+          message: "Surnom requis!",
           type: "is-warning"
         });
-      console.log(await savePlayerSlot({ ...this.form }));
+      }
+      await call('savePlayerSlot',{
+        ...this.form,
+        teamNumber
+      })
+      
       this.$buefy.toast.open({
-        message: "Saved!",
-        type: "is-success"
+        message: "Est prêt!",
+        type: "is-info"
       });
+      this.update()
     }
   }
 };

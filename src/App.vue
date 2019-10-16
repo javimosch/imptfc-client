@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <choice-team></choice-team>
+    <ChoiceTeam/>
   </div>
 </template>
 
 <script>
 import ChoiceTeam from "./components/ChoiceTeam";
+
 
 export default {
   name: "App",
