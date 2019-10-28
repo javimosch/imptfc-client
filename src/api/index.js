@@ -11,6 +11,6 @@ export async function call(name, args = {}, transform = "", options) {
     transform: transform.toString(),
     ...options
   })).data;
-  console.log("api call", name, "response is", r);
+
   return r;
 }

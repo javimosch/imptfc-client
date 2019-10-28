@@ -13,7 +13,7 @@
       
       <b-table-column field="nickname" label="Surnom">{{ props.row.nickname }}</b-table-column>
 
-      <b-table-column field="last_name" label="Équipe">{{ props.row.teamNumber }}</b-table-column>
+      <b-table-column field="last_name" label="Équipe">{{ props.row.teamNumberFormatted }}</b-table-column>
 
     </template>
 
