@@ -1,23 +1,26 @@
 <template>
   <div id="app">
     <h1 class="is-size-1" style="
-    color: #35388e;">International de Mpt FC </h1>
-    <ChoiceTeam/>
-     <div class="container is-fullhd">
-      <Location/>
-  </div> 
+    color: #35388e;">International de Mpt FC</h1>
+    <ChoiceTeam />
+
+    <div class="container is-fullhd">
+      <router-link :to="{name:'tournaments'}">Join</router-link>
+      <Location />
+    </div>
     <footer>
-    Made with 💛 by&nbsp;
-        <a href="https://montpedigital.misitioba.com" target="_blank">
-          Montpedigital
-        </a>
-        </footer>
+      Made with 💛 by&nbsp;
+      <a
+        href="https://montpedigital.misitioba.com"
+        target="_blank"
+      >Montpedigital</a>
+    </footer>
   </div>
 </template>
 
 <script>
 import ChoiceTeam from "./components/ChoiceTeam";
-import Location from './components/Map'
+import Location from "./components/Map";
 
 export default {
   name: "App",
@@ -30,10 +33,11 @@ export default {
 
 <style>
 body {
-  background: linear-gradient( rgba(255, 255, 255,0.8), rgba(255, 255, 0, 0.6) ),url('./assets/pics/1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-position-y:-230px;
+  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 0, 0.6)),
+    url("./assets/pics/1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-position-y: -230px;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -42,10 +46,10 @@ body {
   text-align: center;
   color: #2c3e50;
 }
-footer{
+footer {
   height: 100px;
-    display: flex!important;
-    justify-content: center;
-    align-items: center;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
 }
 </style>
