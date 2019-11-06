@@ -38,7 +38,8 @@
       <div class="columns is-multiline is-mobile is-centered">
         <div class="column is-half">
           <b-notification
-            type="is-info"
+            style="margin-bottom:20px;"
+            type="is-warning"
             aria-close-label="Close notification"
           >Prochain événement: {{dateFormatted}}</b-notification>
         </div>

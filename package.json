@@ -13,7 +13,9 @@
     "buefy": "0.8.5",
     "funql-api": "^1.2.3",
     "moment-timezone": "^0.5.27",
-    "vue": "^2.5.22"
+    "vue": "^2.5.22",
+    "vue-gallery": "^2.0.1",
+    "vue-helmet": "^1.1.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "3.6.0",
