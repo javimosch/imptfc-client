@@ -1,7 +1,21 @@
 <template>
   <div class="ChoiceTeam">
     <div class="container is-fluid">
-      <div
+
+    <div class="columns is-multiline is-mobile is-centered">
+        <div class="column is-half">
+         <b-notification
+            style="margin-bottom:20px;"
+            type="is-warning"
+            aria-close-label="Close notification"
+          >
+	      PROCHAIN MATCH (HEBDOMADAIRE) : {{dateFormatted}}
+	 </b-notification>
+        </div>
+      </div>
+     
+
+	<div
         class="notification"
       >Indiquez votre présence en vous inscrivant à une équipe chaque semaine (avant le dimanche!)</div>
 
@@ -37,11 +51,13 @@
       </div>
       <div class="columns is-multiline is-mobile is-centered">
         <div class="column is-half">
-          <b-notification
+         <b-notification
             style="margin-bottom:20px;"
-            type="is-warning"
+            type="is-info"
             aria-close-label="Close notification"
-          >Prochain événement: {{dateFormatted}}</b-notification>
+          >
+		Rappelez-vous que le 17 novembre, il y a un tournoi au lieu du jeu hebdomadaire.
+	 </b-notification>
         </div>
       </div>
     </div>
@@ -90,7 +106,7 @@ export default {
       return this.stats.match.players.filter(p => p.teamNumber !== 0).length;
     },
     showThirdTeam() {
-      return this.stats.match.players.length >= 16;
+      return false; //this.stats.match.players.length >= 16;
     },
     formattedData() {
       let players = this.stats.match.players.map(p => {
@@ -112,7 +128,15 @@ export default {
       Object.assign(this.$data, await funql("getAppHomeData"));
     },
     async savePlayerSlot(teamNumber) {
-      if (!this.form.nickname) {
+      
+	if(this.stats.match.players.length>=20){
+		return this.$buefy.toast.open({
+			message: "Au-delà des 20 joueurs, vous pouvez venir sans vous inscrire, mais nous ne pouvons pas vous garantir de pouvoir jouer en continu. Vous devrez peut-être attendre dans le froid de l'hiver :(",
+			type: "is-warning"
+		})
+	}
+
+	if (!this.form.nickname) {
         return this.$buefy.toast.open({
           message: "D'abord, écrivez votre nom",
           type: "is-warning"
