@@ -1,6 +1,29 @@
 <template>
   <div id="app">
     <ChoiceTeam />
+<!---
+
+
+
+
+
+
+      <div class="columns is-multiline is-mobile is-centered">
+        <div class="column is-half">
+         <b-notification
+            style="margin-bottom:20px;"
+            type="is-info"
+            aria-close-label="Close notification"
+          >
+		Rappelez-vous que le 17 novembre, il y a un tournoi au lieu du jeu hebdomadaire.
+	 </b-notification>
+        </div>
+      </div>
+
+
+
+
+-
     <TournamentArticle />
 
     <div class="buttons is-centered" style="margin-top:20px;">
@@ -10,7 +33,7 @@
         class="button is-info is-large"
       >Voir plus dans HelloAsso</a>
     </div>
-
+-->
     <Gallery />
   </div>
 </template>
