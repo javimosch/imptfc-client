@@ -1,6 +1,20 @@
 <template>
   <div class="ChoiceTeam">
     <div class="container is-fluid">
+      
+      
+      
+      <div class="columns is-multiline is-mobile is-centered">
+        <div class="column is-half">
+         <b-notification
+            style="margin-bottom:20px;"
+            type="is-info"
+            aria-close-label="Close notification"
+          >
+	      Petit rappel: aux dates 22, 29, 05 et 12 on ne joue pas. Bonne fêtes !
+	 </b-notification>
+        </div>
+      </div>
 
     <div class="columns is-multiline is-mobile is-centered">
         <div class="column is-half">
