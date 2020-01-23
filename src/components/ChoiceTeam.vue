@@ -2,7 +2,7 @@
   <div class="ChoiceTeam">
     <div class="container is-fluid">
       
-      
+      <!--
       
       <div class="columns is-multiline is-mobile is-centered">
         <div class="column is-half">
@@ -15,6 +15,8 @@
 	 </b-notification>
         </div>
       </div>
+      
+      -->
 
     <div class="columns is-multiline is-mobile is-centered">
         <div class="column is-half">

@@ -5,7 +5,7 @@
         <b-navbar>
           <template slot="brand">
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
-              <h4 style="color: #35388e;" class="is-size-3">International de Mpt FC</h4>
+              <h4 class="Title">International de Montpellier FC</h4>
             </b-navbar-item>
           </template>
           <template slot="start">
@@ -39,4 +39,8 @@ export default {
 };
 </script>
 <style lang="scss">
+.Title{
+  color:#35388e;
+  font-size:20px;
+}
 </style>
