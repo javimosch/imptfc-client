@@ -2,21 +2,6 @@
   <div class="ChoiceTeam">
     <div class="container is-fluid">
       
-      <!--
-      
-      <div class="columns is-multiline is-mobile is-centered">
-        <div class="column is-half">
-         <b-notification
-            style="margin-bottom:20px;"
-            type="is-info"
-            aria-close-label="Close notification"
-          >
-	      Petit rappel: aux dates 22, 29, 05 et 12 on ne joue pas. Bonne fêtes !
-	 </b-notification>
-        </div>
-      </div>
-      
-      -->
 
     <div class="columns is-multiline is-mobile is-centered">
         <div class="column is-half">
@@ -25,13 +10,13 @@
             type="is-warning"
             aria-close-label="Close notification"
           >
-	      PROCHAIN MATCH (HEBDOMADAIRE) : {{dateFormatted}}
-	 </b-notification>
+        PROCHAIN MATCH (HEBDOMADAIRE) : {{dateFormatted}}
+   </b-notification>
         </div>
       </div>
      
 
-	<div
+  <div
         class="notification"
       >Indiquez votre présence en vous inscrivant à une équipe chaque semaine (avant le dimanche!)</div>
 
@@ -39,7 +24,10 @@
         <div class="column is-full-mobile is-half-table is-half-desktop">
           <div>
             <b-field label="Ton surnom">
-              <b-input v-model="form.nickname"></b-input>
+            <b-input v-model="form.nickname"></b-input>
+            </b-field>
+            <b-field label="Ton portable">
+            <b-input placeholder="En cas d'urgence ou de changement de terrain"  v-model="form.phone"></b-input>
             </b-field>
           </div>
           <hr />
@@ -91,6 +79,7 @@ export default {
       },
       form: {
         nickname: "",
+        phone:'',
         teamNumber: 0
       }
     };
@@ -134,14 +123,14 @@ export default {
     },
     async savePlayerSlot(teamNumber) {
       
-	if(this.stats.match.players.length>=20){
-		return this.$buefy.toast.open({
-			message: "Au-delà des 20 joueurs, vous pouvez venir sans vous inscrire, mais nous ne pouvons pas vous garantir de pouvoir jouer en continu. Vous devrez peut-être attendre dans le froid de l'hiver :(",
-			type: "is-warning"
-		})
-	}
+  if(this.stats.match.players.length>=20){
+    return this.$buefy.toast.open({
+      message: "Au-delà des 20 joueurs, vous pouvez venir sans vous inscrire, mais nous ne pouvons pas vous garantir de pouvoir jouer en continu. Vous devrez peut-être attendre dans le froid de l'hiver :(",
+      type: "is-warning"
+    })
+  }
 
-	if (!this.form.nickname) {
+  if (!this.form.nickname) {
         return this.$buefy.toast.open({
           message: "D'abord, écrivez votre nom",
           type: "is-warning"
@@ -157,6 +146,10 @@ export default {
         type: "is-info"
       });
       this.update();
+
+      this.form.nickname = "";
+      this.form.phone = "";
+
     }
   }
 };
