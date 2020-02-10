@@ -4,7 +4,7 @@
       
 
     <div class="columns is-multiline is-mobile is-centered">
-        <div class="column is-half">
+        <div class="column is-half-desktop">
          <b-notification
             style="margin-bottom:20px;"
             type="is-warning"

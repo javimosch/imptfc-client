@@ -6,21 +6,22 @@
       v-for="(image, imageIndex) in images"
       :key="imageIndex"
       @click="index = imageIndex"
-      :style="{ backgroundImage: 'url(' + image + ')', width: '300px', height: '200px' }"
+      :style="{ backgroundImage: `url('${image}')`, width: '300px', height: '200px' }"
     ></div>
   </div>
 </template>
  
 <script>
 import VueGallery from "vue-gallery";
-import PicOne from "../assets/pics/1.jpg";
-import PicTwo from "../assets/pics/2.jpg";
-import PicThree from "../assets/pics/3.jpg";
-import PicFour from "../assets/pics/4.jpg";
 export default {
   data: function() {
     return {
-      images: [PicOne, PicTwo, PicThree, PicFour],
+      images: (()=>{
+        var len = 5;
+        var arr = []
+        for(var x=0;x<len;x++) arr.push(require('../assets/pics/' + (x+1).toString() + '.jpg'))
+        return arr;
+      })(),
       index: null
     };
   },

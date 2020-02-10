@@ -1,5 +1,6 @@
 <template>
   <div>
+    <img src="../assets/map.jpg"/>
     <iframe
       class="Location"
       frameborder="0"
