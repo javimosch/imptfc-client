@@ -1,6 +1,8 @@
 <template>
   <div>
-    <gallery :images="images" :index="index" @close="index = null"></gallery>
+    <no-ssr placeholder="You can even add a placeholder to be rendered instead!">
+      <gallery :images="images" :index="index" @close="index = null"></gallery>
+    </no-ssr>
     <div
       class="image"
       v-for="(image, imageIndex) in images"
@@ -12,8 +14,10 @@
 </template>
  
 <script>
+import NoSSR from 'vue-no-ssr';
 import VueGallery from "vue-gallery";
 export default {
+  
   data: function() {
     return {
       images: (()=>{
@@ -27,6 +31,7 @@ export default {
   },
 
   components: {
+    'no-ssr':NoSSR,
     gallery: VueGallery
   }
 };

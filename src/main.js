@@ -1,47 +1,57 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
+import App from './App.vue'
 
-import Home from './components/Home.vue'
-import Location from './components/Location.vue'
+import store from './store'
 
-import Navbar from './components/Navbar'
-
+Vue.config.productionTip = false
 Vue.use(Buefy)
 Vue.use(VueRouter)
-Vue.config.productionTip = false
 
-// ROUTER
-const routes = [
-    { path: '/', component: Home, name: 'home' },
-    { path: '/location', component: Location, name: 'location' }
-]
-const router = new VueRouter({
-    routes // short for `routes: routes`
-})
+// Export factory function
+export default function createApp({ type }) {
+    //type client/server
+    // 1. Create a router instance 
+    const router = new VueRouter({
+        mode: 'history',
+        routes: [
+            {
+                path: '/',
+                name: 'home',
+                component: () => import('./components/Home.vue'),
+                meta: {
+                    ssr: false
+                }
+            },
+            {
+                path: '/events',
+                name: 'events',
+                component: () => import('./components/Events.vue'),
+                meta: {
+                    ssr: false
+                }
+            },
+            {
+                name: 'location',
+                path: '/location', component: () => import('./components/Location.vue'), 
+                meta: {
+                    ssr: false
+                }
+            }
+        ]
+    })
 
-new Vue({
-    template: `
-    <div>
-        <Navbar />
-        <div class="container">
-    <div class="columns is-centered is-mobile is-multiline">
-      <div class="column">
-        <router-view></router-view>
-        </div>
-        </div>
-        </div>
-        <footer>
-            Made with 💛 by&nbsp;
-            <a href="https://montpedigital.misitioba.com" target="_blank">Montpedigital</a>
-        </footer>
-    </div>
-    `,
-    components: {
-        Navbar
-    },
-    router
-    // render: h => h(App)
-}).$mount('#app')
+    // 2. Create a root component
+    const app = {
+        store,
+        router,
+        // This is necessary, it is for vue-meta
+        head: {},
+        render: h => h(App)
+    }
+
+    // 3. return the root component
+    return app
+}

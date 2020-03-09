@@ -1,16 +1,29 @@
 import axios from "axios";
+import  funql  from "funql-api/client.cjs";
+const apiURL = process.env.VUE_APP_FUNQL_ENDPOINT;
+const fql = funql(process.env.VUE_APP_FUNQL_ENDPOINT,{
+//  namespace:"imptfc"
+})
 
-const apiURL = "https://edge.savoie.misitioba.com";
-const namespace = `imptfc`;
+export default fql;
 
-export async function call(name, args = {}, transform = "", options) {
-  let r = (await axios.post(`${apiURL}/funql-api?name=${name}`, {
-    namespace,
-    name,
-    args,
-    transform: transform.toString(),
-    ...options
-  })).data;
-
-  return r;
+export async function post(url,data){
+  if(url.charAt(0)==='/'){
+    url= url.substring(1)
+  }
+  return axios.post(apiURL+'/'+url,data)
 }
+
+export async function get(url,data = {}){
+  if(url.charAt(0)==='/'){
+    url= url.substring(1)
+  }
+  let qs = Object.keys(data).map(key=>(`${key}=${data[key]}`)).join('&')
+  if(url.indexOf('?')!==-1){
+    url+= '&'+qs
+  }else{
+    url+='?'+qs
+  }
+  return axios.get(apiURL+'/'+url)
+}
+

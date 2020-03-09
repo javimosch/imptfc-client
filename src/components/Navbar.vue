@@ -5,12 +5,15 @@
         <b-navbar>
           <template slot="brand">
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
-              <h4 class="Title">International de Montpellier FC</h4>
+              <h2 class="Title">Montpellier FC</h2>
             </b-navbar-item>
           </template>
           <template slot="start">
             <b-navbar-item>
-              <router-link :to="{name:'home'}">Inscrivez-vous!</router-link>
+              <router-link :to="{name:'home'}">Home</router-link>
+            </b-navbar-item>
+            <b-navbar-item>
+              <router-link :to="{name:'events'}">Events</router-link>
             </b-navbar-item>
             <b-navbar-item>
               <router-link :to="{name:'location'}">Le terrain</router-link>
@@ -41,6 +44,6 @@ export default {
 <style lang="scss">
 .Title{
   color:#35388e;
-  font-size:20px;
+  font-size:35px;
 }
 </style>

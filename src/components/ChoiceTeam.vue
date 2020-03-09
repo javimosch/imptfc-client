@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { funql } from "funql-api/client";
+import  funql  from "funql-api/client.cjs";
 import TeamList from "./TeamList";
 
 export default {
@@ -73,6 +73,9 @@ export default {
   name: "ChoiceTeam",
   data() {
     return {
+      fql: funql(process.env.VUE_APP_FUNQL_ENDPOINT,{
+        namespace:"imptfc"
+      }),
       options: {
         max_number_of_teams: 3
       },
@@ -98,8 +101,8 @@ export default {
         .tz("Europe/Paris")
         .utc()
         .locale("fr")
-        .calendar();
-      //.format('dddd DD-MM-YYYY HH[h]mm')
+        //.calendar();
+      .format('dddd DD-MM-YYYY HH[h]mm')
     },
     goingCount() {
       return this.stats.match.players.filter(p => p.teamNumber !== 0).length;
@@ -128,7 +131,7 @@ export default {
   },
   methods: {
     async update() {
-      Object.assign(this.$data, await funql("getAppHomeData"));
+      Object.assign(this.$data, await this.fql("getAppHomeData"));
     },
     getActivePlayersLength(){
       return this.stats.match.players.filter(p=>![0,3].includes(p.teamNumber)).length
@@ -163,7 +166,7 @@ export default {
           type: "is-warning"
         });
       }
-      await funql("savePlayerSlot", {
+      await this.fql("savePlayerSlot", {
         ...this.form,
         teamNumber
       });
