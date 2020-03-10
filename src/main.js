@@ -39,6 +39,13 @@ export default function createApp({ type }) {
                 meta: {
                     ssr: false
                 }
+            },{
+                name:"collection_list",
+                path:'/collection/:name',
+                component:()=>import('./components/CollectionList.vue'),
+                meta:{
+                    ssr:false
+                }
             }
         ]
     })

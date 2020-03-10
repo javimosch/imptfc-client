@@ -1,5 +1,6 @@
 <template lang="pug">
 	.events
+		h1 Events
 		.columns.is-multiline.is-mobile
 			.event(v-for="event in events" :key="event._id")
 				.column.is-full-desktop

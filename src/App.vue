@@ -1,5 +1,5 @@
 <template>
-  <div> 
+  <div class="section"> 
     <Navbar />
     <div class="container">
       <div class="columns is-centered is-mobile is-multiline">
