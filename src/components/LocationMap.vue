@@ -1,6 +1,11 @@
 <template>
   <div>
+    <p>
+      There are two terrains. We play in Astruc or Alain Delylle. Check in Astruc first.
+      <br/><br/>
+    </p>
     <img src="../assets/map.jpg"/>
+    <img src="../assets/map-astruc.jpg"/>
     <iframe
       class="Location"
       frameborder="0"

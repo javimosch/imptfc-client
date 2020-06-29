@@ -34,8 +34,8 @@ new Vue({
         </div>
         </div>
         <footer>
-            Made with 💛 by&nbsp;
-            <a href="https://montpedigital.misitioba.com" target="_blank">Montpedigital</a>
+            Made with ❤️ by&nbsp;
+            <a href="https://montpellier.misitioba.com" target="_blank">MISITIOBA</a>
         </footer>
     </div>
     `,

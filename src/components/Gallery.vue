@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="gallery">
     <gallery :images="images" :index="index" @close="index = null"></gallery>
     <div
       class="image"
@@ -17,7 +17,7 @@ export default {
   data: function() {
     return {
       images: (()=>{
-        var len = 5;
+        var len = 10;
         var arr = []
         for(var x=0;x<len;x++) arr.push(require('../assets/pics/' + (x+1).toString() + '.jpg'))
         return arr;
@@ -32,7 +32,7 @@ export default {
 };
 </script> 
  
-<style scoped>
+<style scoped lang="scss">
 .image {
   float: left;
   background-size: cover;
@@ -40,5 +40,13 @@ export default {
   background-position: center center;
   border: 1px solid #ebebeb;
   margin: 5px;
+}
+.gallery{
+  @media (max-width: 968px) {
+    display: flex!important;
+    justify-content: center!important;
+    flex-direction: column!important;
+    align-items: center!important;
+  }
 }
 </style> 
