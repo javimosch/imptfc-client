@@ -13,7 +13,7 @@
               <router-link :to="{name:'home'}">Home</router-link>
             </b-navbar-item>
             <b-navbar-item>
-              <router-link :to="{name:'events'}">Events</router-link>
+              <router-link v-if="false" :to="{name:'events'}">Events</router-link>
             </b-navbar-item>
             <b-navbar-item>
               <router-link :to="{name:'location'}">Le terrain</router-link>
