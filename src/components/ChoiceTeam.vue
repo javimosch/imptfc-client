@@ -108,7 +108,7 @@ export default {
         .utc()
         .locale("fr")
         //.calendar();
-      .format('dddd DD-MM-YYYY HH[h]mm')
+      .format('dddd [à] HH[h]mm') //DD-MM-YYYY
     },
     goingCount() {
       return this.stats.match.players.filter(p => p.teamNumber !== 0).length;
