@@ -8,22 +8,22 @@
             type="is-success"
             aria-close-label="Close notification"
           >
-
-      <span v-if="true" v-show="dateFormatted">  PROCHAIN MATCH (HEBDOMADAIRE) : {{dateFormatted}} </span>
-	<span v-show="!dateFormatted">PROCHAIN MATCH: Personne ne s'est inscrit</span>
-<br>
-Please respect the COVID guidelines.
-<br/>
-Check our <a href="https://chat.whatsapp.com/IFbOaz8rvSH0Xnd7MIP9UK" target="_blank">chat group</a> for more info.   
-</b-notification>
+            <span
+              v-if="true"
+              v-show="dateFormatted"
+            >PROCHAIN MATCH (HEBDOMADAIRE) : {{dateFormatted}}</span>
+            <span v-show="!dateFormatted">PROCHAIN MATCH: Personne ne s'est inscrit</span>
+            <br />Please respect the COVID guidelines.
+            <br />Check our
+            <a href="https://chat.whatsapp.com/IFbOaz8rvSH0Xnd7MIP9UK" target="_blank">chat group</a> for more info.
+          </b-notification>
         </div>
       </div>
 
-      <div
-        class="notification"
-      >Indiquez votre présence en vous inscrivant à une équipe chaque semaine (avant le dimanche!)
-      <br/>
-      <router-link :to="{name:'location'}">Where we play? Où nous jouons?</router-link>
+      <div class="notification">
+        Indiquez votre présence en vous inscrivant à une équipe chaque semaine (avant le dimanche!)
+        <br />
+        <router-link :to="{name:'location'}">Where we play? Où nous jouons?</router-link>
       </div>
 
       <div class="columns is-multiline is-mobile is-centered">
@@ -69,7 +69,7 @@ Check our <a href="https://chat.whatsapp.com/IFbOaz8rvSH0Xnd7MIP9UK" target="_bl
 </template>
 
 <script>
-import  funql  from "funql-api/client.cjs";
+import funql from "funql-api/client.cjs";
 import TeamList from "./TeamList";
 
 export default {
@@ -79,8 +79,8 @@ export default {
   name: "ChoiceTeam",
   data() {
     return {
-      fql: funql(process.env.VUE_APP_FUNQL_ENDPOINT,{
-        namespace:"imptfc"
+      fql: funql(process.env.VUE_APP_FUNQL_ENDPOINT, {
+        namespace: "imptfc"
       }),
       options: {
         max_number_of_teams: 3
@@ -103,12 +103,14 @@ export default {
   },
   computed: {
     dateFormatted() {
-      return !this.stats.match.date?"":require("moment-timezone")(this.stats.match.date)
-        .tz("Europe/Paris")
-        .utc()
-        .locale("fr")
-        //.calendar();
-      .format('dddd [à] HH[h]mm') //DD-MM-YYYY
+      return !this.stats.match.date
+        ? ""
+        : require("moment-timezone")(this.stats.match.date)
+            .tz("Europe/Paris")
+            .utc()
+            .locale("fr")
+      //      .calendar();
+      .format('dddd DD [à] HH[h]mm') //DD-MM-YYYY
     },
     goingCount() {
       return this.stats.match.players.filter(p => p.teamNumber !== 0).length;
@@ -136,8 +138,21 @@ export default {
     }
   },
   methods: {
+    getMatchDateFormat(format = "DD-MM-YYYY HH:mm:ss") {
+      return !this.stats.match.date
+        ? ""
+        : require("moment-timezone")(this.stats.match.date)
+            .tz("Europe/Paris")
+            .utc()
+            .locale("fr")
+            .format(format);
+    },
     async update() {
       Object.assign(this.$data, await this.fql("getAppHomeData"));
+      console.log(`MATCH DATE IS ${this.getMatchDateFormat()}`, {
+        date: this.stats.match.date
+      });
+      window.moment = require("moment-timezone");
     },
     getActivePlayersLength() {
       return this.stats.match.players.filter(
