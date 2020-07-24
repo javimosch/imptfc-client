@@ -12,7 +12,7 @@ export default {
     },
     actions: { 
         async fetchEvents({commit}){
-            let events = await get('api/events')
+            let events = await fql('api/events')
             commit("SET_EVENTS",events.data||[])
         }
      },

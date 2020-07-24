@@ -25,14 +25,14 @@ export default function createApp({ type }) {
                     ssr: false
                 }
             },
-            {
+            /*{
                 path: '/events',
                 name: 'events',
                 component: () => import('./components/Events.vue'),
                 meta: {
                     ssr: false
                 }
-            },
+            },*/
             {
                 name: 'location',
                 path: '/location', component: () => import('./components/Location.vue'), 

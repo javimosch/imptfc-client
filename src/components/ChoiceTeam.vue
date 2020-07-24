@@ -1,23 +1,7 @@
 <template>
   <div class="ChoiceTeam">
     <div class="container is-fluid">
-      <div class="columns is-multiline is-mobile is-centered">
-        <div class="column is-half-desktop">
-          <b-notification
-            style="margin-bottom:20px;"
-            type="is-success"
-            aria-close-label="Close notification"
-          >
-
-      <span v-if="true" v-show="dateFormatted">  PROCHAIN MATCH (HEBDOMADAIRE) : {{dateFormatted}} </span>
-	<span v-show="!dateFormatted">PROCHAIN MATCH: Personne ne s'est inscrit</span>
-<br>
-Please respect the COVID guidelines.
-<br/>
-Check our <a href="https://chat.whatsapp.com/IFbOaz8rvSH0Xnd7MIP9UK" target="_blank">chat group</a> for more info.   
-</b-notification>
-        </div>
-      </div>
+      
 
       <div
         class="notification"
