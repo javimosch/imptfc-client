@@ -1,22 +1,24 @@
 <template lang="pug">
 	.events
-		h1 Events
-		.columns.is-multiline.is-mobile
-			.event(v-for="event in events" :key="event._id")
-				.column.is-full-desktop
-					.hero
-						.hero-body
-							.container
-								.title(v-text="event.title")
-								.subtitle(v-text="event.short_description")
+		h1.title.is-1 Events
+		.columns.is-multiline.is-desktop
+			.column.is-half-desktop.is-one-third-widescreen(v-for="event in filteredEvents" :key="event._id")
+				Event(:event="event")
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Event from './Event'
 export default {
+	components:{
+		Event
+	},
   computed: {
     ...mapGetters({
       events: "events"
-    })
+	}),
+	filteredEvents(){
+		return this.events.concat(this.events).concat(this.events).concat(this.events).concat(this.events).concat(this.events)
+	}
   },
   mounted() {
     this.$store.dispatch("fetchEvents");

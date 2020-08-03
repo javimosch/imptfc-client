@@ -1,4 +1,4 @@
-import {default as fql, get} from '../api'
+import {default as fql} from '../api'
 
 export default {
     //namespaced: true,
@@ -12,8 +12,8 @@ export default {
     },
     actions: { 
         async fetchEvents({commit}){
-            let events = await fql('api/events')
-            commit("SET_EVENTS",events.data||[])
+            let events = await fql('getEvents')
+            commit("SET_EVENTS",events)
         }
      },
     getters: {  

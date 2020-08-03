@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Events v-if="false"/>
+    <Events v-if="true"/>
     <ChoiceTeam />
-    <Gallery />
+    <Gallery v-if="false" />
   </div>
 </template>
 
