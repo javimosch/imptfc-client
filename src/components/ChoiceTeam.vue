@@ -11,7 +11,9 @@
 	<br/>
 	<br/>
 	<strong>
-	NOTICE: We started to play at 150 Rue Bourvil, 34070 Montpellier (Arsenal Croix D Argent FC) (Check the whatsapp group for more info)
+	NOTICE 1: We started to play at 150 Rue Bourvil, 34070 Montpellier (Arsenal Croix D Argent FC) (Check the whatsapp group for more info)
+  <br/>
+  NOTICE 2: We have limited  the subscription up to 32 players. Please respect the COVID guidelines.
 	</strong>
 
       </div>
@@ -33,17 +35,12 @@
           <p class="is-size-6 subtitle" style="margin-top:20px;">Cliquez sur l'un des boutons</p>
 
           <div class="buttons is-centered">
-            <b-button
-              type="is-success"
-              @click="savePlayerSlot(1)"
-            >Équipe 1 ({{stats.teamNumbers[0]}})</b-button>
-
+            <b-button type="is-success" @click="savePlayerSlot(1)" >Équipe 1 ({{stats.teamNumbers[0]}})</b-button>
             <b-button type="is-info" @click="savePlayerSlot(2)">Équipe 2 ({{stats.teamNumbers[1]}})</b-button>
+            <b-button type="is-info" @click="savePlayerSlot(3)">Équipe 3 ({{stats.teamNumbers[2]}})</b-button>
+            <b-button type="is-info" @click="savePlayerSlot(4)">Équipe 4 ({{stats.teamNumbers[3]}})</b-button>
 
-            <b-button
-              type="is-danger"
-              @click="savePlayerSlot(3)"
-            >Remplaçant ({{stats.teamNumbers[2]}})</b-button>
+            <b-button v-show="false" type="is-danger" @click="savePlayerSlot(5)">Remplaçant ({{stats.teamNumbers[4]}})</b-button>
 
             <b-button type="is-default" @click="savePlayerSlot(0)">Absence ({{stats.notGoing}})</b-button>
           </div>
@@ -62,6 +59,10 @@
 import funql from "funql-api/client.cjs";
 import TeamList from "./TeamList";
 
+const fql = funql(process.env.VUE_APP_FUNQL_ENDPOINT, {
+        namespace: "imptfc"
+      })
+
 export default {
   components: {
     TeamList
@@ -69,14 +70,9 @@ export default {
   name: "ChoiceTeam",
   data() {
     return {
-      fql: funql(process.env.VUE_APP_FUNQL_ENDPOINT, {
-        namespace: "imptfc"
-      }),
-      options: {
-        max_number_of_teams: 3
-      },
       stats: {
-        teamNumbers: [0, 0, 0],
+        notGoing: 0,
+        teamNumbers: [0, 0, 0, 0],
         match: {
           players: []
         }
@@ -109,11 +105,14 @@ export default {
       let teamLabels = {
         "1": "Equipe 1",
         "2": "Equipe 2",
-        "3": "Remplaçant"
+        "3": "Equipe 3",
+        "4": "Equipe 4",
+        "5": "Remplaçant"
       };
 
       let players = this.stats.match.players.map(p => {
         p.nickname = p.nickname.charAt(0).toUpperCase() + p.nickname.substr(1);
+        p.joinedFormatted = moment(p.joined).format('DD-MM-YY HH:mm')
         p.teamNumberFormatted =
           p.teamNumber === 0 ? "Absence" : teamLabels[p.teamNumber.toString()];
         return p;
@@ -122,7 +121,7 @@ export default {
       players = players
         .filter(p => p.teamNumber !== 0)
         .sort((a, b) => {
-          return a.teamNumber > b.teamNumber ? 1 : -1;
+          return a.joined > b.joined ? 1 : -1;
         });
       return players.concat(playersMissingTheMatch);
     }
@@ -138,7 +137,7 @@ export default {
             .format(format);
     },
     async update() {
-      Object.assign(this.$data, await this.fql("getAppHomeData"));
+      Object.assign(this.$data, await fql("getAppHomeData"));
       console.log(`MATCH DATE IS ${this.getMatchDateFormat()}`, {
         date: this.stats.match.date
       });
@@ -146,7 +145,7 @@ export default {
     },
     getActivePlayersLength() {
       return this.stats.match.players.filter(
-        p => ![0, 3].includes(p.teamNumber)
+        p => ![0].includes(p.teamNumber)
       ).length;
     },
     isCurrentSubcriberNew() {
@@ -170,7 +169,7 @@ export default {
         teamNumber = 3; //3 => remplaçant
       }
 
-      var wantsToPlay = ![0, 3].includes(teamNumber);
+      var wantsToPlay = ![0].includes(teamNumber);
 
       if (
         this.getActivePlayersLength() >= 32 &&
@@ -189,7 +188,7 @@ export default {
           type: "is-warning"
         });
       }
-      await this.fql("savePlayerSlot", {
+      await fql("savePlayerSlot", {
         ...this.form,
         teamNumber
       });
