@@ -166,12 +166,11 @@ export default {
       var wantsToPlay = ![0, 3].includes(teamNumber);
 
       if (
-        this.getActivePlayersLength() >= 16 &&
-        !this.isCurrentSubcriberNew() &&
+        this.getActivePlayersLength() >= 32 &&
         wantsToPlay
       ) {
         return this.$buefy.toast.open({
-          message: "Il y a déjà 16 joueurs sur le terrain.",
+          message: "Il y a déjà 32 joueurs sur le terrain (COVID guidelines)",
           type: "is-info",
           duration: 5000
         });
