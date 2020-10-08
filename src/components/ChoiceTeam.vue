@@ -155,7 +155,9 @@ export default {
       );
     },
     async savePlayerSlot(teamNumber) {
-      if (
+     
+     /*
+     if (
         this.getActivePlayersLength() >= 16 &&
         this.isCurrentSubcriberNew() &&
         teamNumber !== 0
@@ -167,7 +169,7 @@ export default {
           duration: 5000
         });
         teamNumber = 3; //3 => remplaçant
-      }
+      }*/
 
       var wantsToPlay = ![0].includes(teamNumber);
 
