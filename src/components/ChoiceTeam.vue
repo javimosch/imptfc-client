@@ -7,6 +7,13 @@
         Indiquez votre présence en vous inscrivant à une équipe chaque semaine (avant le dimanche!)
         <br />
         <router-link :to="{name:'location'}">Where we play? Où nous jouons?</router-link>
+
+	<br/>
+	<br/>
+	<strong>
+	NOTICE: We started to play at 150 Rue Bourvil, 34070 Montpellier (Arsenal Croix D Argent FC) (Check the whatsapp group for more info)
+	</strong>
+
       </div>
 
       <div class="columns is-multiline is-mobile is-centered">

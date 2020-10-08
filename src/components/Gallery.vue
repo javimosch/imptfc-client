@@ -21,7 +21,7 @@ export default {
   data: function() {
     return {
       images: (()=>{
-        var len = 11;
+        var len = 13;
         var arr = []
         for(var x=0;x<len;x++) arr.push(require('../assets/pics/' + (x+1).toString() + '.jpg'))
         return arr;
