@@ -12,10 +12,18 @@
             </b-field>
             <b-field label="Ton portable">
               <b-input
-                placeholder="En cas d'urgence ou de changement de terrain"
+                placeholder="En cas de communication... (écrire une fois suffit)"
                 v-model="form.phone"
               ></b-input>
             </b-field>
+
+            <b-field label="Ton Email">
+              <b-input
+                placeholder="En cas de communication... (écrire une fois suffit)"
+                v-model="form.email"
+              ></b-input>
+            </b-field>
+
           </div>
           <hr />
           <p class="is-size-6 subtitle" style="margin-top:20px;">Cliquez sur l'un des boutons</p>
@@ -192,6 +200,7 @@ export default {
 
       this.form.nickname = "";
       this.form.phone = "";
+      this.form.email = "";
     }
   }
 };

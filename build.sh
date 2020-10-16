@@ -1,5 +1,5 @@
 (docker rm -f tmp_build_imptfc_client || true) && docker run -d --rm --name tmp_build_imptfc_client -w /app \
---net=caddy-node_caddy --net-alias=tmp_build_imptfc_client \
+--net=mba_default --net-alias=tmp_build_imptfc_client \
 -v "$(pwd)/dist:/app/release" \
 -v "$(pwd)/.env:/app/.env" \
 -v "$(pwd)/public:/app/public" \
