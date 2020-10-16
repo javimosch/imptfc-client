@@ -99,7 +99,7 @@ export default {
       .format('dddd DD [à] HH[h]mm') //DD-MM-YYYY
     },
     goingCount() {
-      return this.stats.match.players.filter(p => p.teamNumber !== 0).length;
+      return this.stats.match.players && this.stats.match.players.filter(p => p.teamNumber !== 0).length;
     },
     formattedData() {
       let teamLabels = {
@@ -109,7 +109,9 @@ export default {
         "4": "Equipe 4",
         "5": "Remplaçant"
       };
-
+      if(!this.stats.match.players || this.stats.match.players.length===0){
+        return []
+      }
       let players = this.stats.match.players.map(p => {
         p.nickname = p.nickname.charAt(0).toUpperCase() + p.nickname.substr(1);
         p.joinedFormatted = moment(p.joined).format('DD-MM-YY HH:mm')
