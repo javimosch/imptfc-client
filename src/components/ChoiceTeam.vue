@@ -2,21 +2,7 @@
   <div class="ChoiceTeam">
     <div class="container is-fluid">
       
-
-      <div class="notification">
-        Indiquez votre présence en vous inscrivant à une équipe chaque semaine (avant le dimanche!)
-        <br />
-        <router-link :to="{name:'location'}">Where we play? Où nous jouons?</router-link>
-
-	<br/>
-	<br/>
-	<strong>
-	NOTICE 1: We started to play at 150 Rue Bourvil, 34070 Montpellier (Arsenal Croix D Argent FC) (Check the whatsapp group for more info)
-  <br/>
-  NOTICE 2: We have limited  the subscription up to 32 players. Please respect the COVID guidelines.
-	</strong>
-
-      </div>
+      <div v-show="mainNotice" class="notification" v-html="mainNotice.contents"></div>
 
       <div class="columns is-multiline is-mobile is-centered">
         <div class="column is-full-mobile is-half-table is-half-desktop">
@@ -70,6 +56,7 @@ export default {
   name: "ChoiceTeam",
   data() {
     return {
+      mainNotice:"",
       stats: {
         notGoing: 0,
         teamNumbers: [0, 0, 0, 0],
