@@ -141,13 +141,13 @@ export default {
       window.moment = require("moment-timezone");
     },
     getActivePlayersLength() {
-      return this.stats.match.players.filter(
+      return this.stats.match && this.stats.match.players && this.stats.match.players.filter(
         p => ![0].includes(p.teamNumber)
       ).length;
     },
     isCurrentSubcriberNew() {
       return (
-        this.stats.match.players.filter(p => p.nickname == this.form.nickname)
+        this.stats.match && this.stats.match.players && this.stats.match.players.filter(p => p.nickname == this.form.nickname)
           .length == 0
       );
     },
