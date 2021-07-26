@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@vapper/core": "^1.7.4",
-    "axios": "0.19.0",
+    "axios": "0.21.1",
     "buefy": "0.8.5",
     "funql-api": "^1.2.9",
     "moment-timezone": "^0.5.27",
