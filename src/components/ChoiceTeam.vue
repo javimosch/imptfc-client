@@ -93,9 +93,6 @@ export default {
       //      .calendar();
       .format('dddd DD [à] HH[h]mm') //DD-MM-YYYY
     },
-    goingCount() {
-      return this.stats.match.players && this.stats.match.players.filter(p => p.teamNumber !== 0).length;
-    },
     formattedData() {
       let teamLabels = {
         "1": "Equipe 1",
@@ -121,6 +118,11 @@ export default {
           return a.joined > b.joined ? 1 : -1;
         });
       return players.concat(playersMissingTheMatch);
+    },
+    goingCount() {
+      return this.stats.match && this.stats.match.players && this.stats.match.players.filter(
+        p => ![0].includes(p.teamNumber)
+      ).length;
     }
   },
   methods: {
@@ -140,22 +142,21 @@ export default {
       });
       window.moment = require("moment-timezone");
     },
-    getActivePlayersLength() {
-      return this.stats.match && this.stats.match.players && this.stats.match.players.filter(
-        p => ![0].includes(p.teamNumber)
-      ).length;
-    },
+    
     isCurrentSubcriberNew() {
       return (
         this.stats.match && this.stats.match.players && this.stats.match.players.filter(p => p.nickname == this.form.nickname)
           .length == 0
       );
     },
+    /**
+     * Subscribes the player to the match (Sunday)
+     */
     async savePlayerSlot(teamNumber) {
      
      /*
      if (
-        this.getActivePlayersLength() >= 16 &&
+        this.goingCount() >= 16 &&
         this.isCurrentSubcriberNew() &&
         teamNumber !== 0
       ) {
@@ -171,11 +172,11 @@ export default {
       var wantsToPlay = ![0].includes(teamNumber);
 
       if (
-        this.getActivePlayersLength() >= 32 &&
+        this.goingCount >= 44 &&
         wantsToPlay
       ) {
         return this.$buefy.toast.open({
-          message: "Il y a déjà 32 joueurs sur le terrain (COVID guidelines)",
+          message: "Il y a déjà 44 joueurs sur le terrain (COVID guidelines)",
           type: "is-info",
           duration: 5000
         });

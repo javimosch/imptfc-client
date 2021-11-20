@@ -11,5 +11,5 @@
 -v "$(pwd)/vapper.config.js:/app/vapper.config.js" \
 -v "$(pwd)/vue.config.js:/app/vue.config.js" \
 -v "$(pwd)/webpack.config.js:/app/webpack.config.js" \
--v "/root/.npm/_cacache:/root/.npm/_cacache" node:10.16.3-alpine sh docker-entry.sh;
+-v "/root/.npm/_cacache:/root/.npm/_cacache" node:16.13.0-alpine sh docker-entry.sh;
 docker logs -f tmp_build_imptfc_client;

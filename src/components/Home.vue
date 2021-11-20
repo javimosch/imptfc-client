@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Events v-if="false"/>
     <ChoiceTeam />
     <Gallery />
   </div>
@@ -8,14 +7,12 @@
 
 <script>
 import ChoiceTeam from "./ChoiceTeam";
-import Events from "./Events";
 import Gallery from "./Gallery";
 export default {
   name: "App",
   components: {
     Gallery,
-    ChoiceTeam,
-    Events
+    ChoiceTeam
   }
 };
 </script>
