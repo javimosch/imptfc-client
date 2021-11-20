@@ -7,7 +7,7 @@
 -v "$(pwd)/.env.production:/app/.env.production" \
 -v "$(pwd)/docker-entry.sh:/app/docker-entry.sh" \
 -v "$(pwd)/package.json:/app/package.json" \
--v "$(pwd)/package.lock.json:/app/package.lock.json" \
+-v "$(pwd)/package-lock.json:/app/package-lock.json" \
 -v "$(pwd)/vapper.config.js:/app/vapper.config.js" \
 -v "$(pwd)/vue.config.js:/app/vue.config.js" \
 -v "$(pwd)/webpack.config.js:/app/webpack.config.js" \
