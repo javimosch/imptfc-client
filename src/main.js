@@ -1,17 +1,11 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Buefy from 'buefy'
-import 'buefy/dist/buefy.css'
+import { createApp } from 'vue'
+import {createRouter, createWebHashHistory} from 'vue-router'
 import App from './App.vue'
 
 import store from './store'
 
-Vue.config.productionTip = false
-Vue.use(Buefy)
-Vue.use(VueRouter)
-
-const router = new VueRouter({
-    mode: 'history',
+const router = createRouter({
+    history: createWebHashHistory(),
     routes: [
         {
             path: '/',
@@ -28,26 +22,13 @@ const router = new VueRouter({
                 ssr: false
             }
         }
-        /*{
-            path: '/events',
-            name: 'events',
-            component: () => import('./components/Events.vue'),
-            meta: {
-                ssr: false
-            }
-        },
-        , {
-            name: "collection_list",
-            path: '/collection/:name',
-            component: () => import('./components/CollectionList.vue'),
-            meta: {
-                ssr: false
-            }
-        }*/
+       
     ]
 })
 
-new Vue({
-    store, router,
-    render: h => h(App)
-}).$mount('#app')
+
+const app = createApp(App)
+
+app.use(store)
+app.use(router)
+app.mount('#app')

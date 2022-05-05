@@ -1,9 +1,9 @@
 import events from './events'
 import collections from './collections'
 import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
-export default new Vuex.Store({
+import { createStore } from 'vuex'
+
+export default createStore({
     modules: {
         events,
         collections

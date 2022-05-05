@@ -1,13 +1,13 @@
 <template lang="pug">
-    LocationMap
+LocationMap
 </template>
 <script>
 import LocationMap from "./LocationMap";
 export default {
   components: {
-    LocationMap
+    LocationMap,
   },
-  name: "Location"
+  name: "Location",
 };
 </script>
 <style lang="scss">

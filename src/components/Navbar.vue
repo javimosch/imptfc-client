@@ -11,12 +11,12 @@
       <div class="columns is-centered is-mobile is-multiline">
         <div class="column">
           <b-navbar>
-            <template slot="brand">
+            <template v-slot:brand>
               <b-navbar-item tag="router-link" :to="{ path: '/' }">
                 <h2 class="Title">Montpellier FC</h2>
               </b-navbar-item>
             </template>
-            <template slot="start">
+            <template v-slot:start>
               <b-navbar-item>
                 <router-link :to="{name:'home'}">Home</router-link>
               </b-navbar-item>
@@ -28,7 +28,7 @@
               </b-navbar-item>
             </template>
             <!--
-          <template slot="end">
+          <template v-slot="end">
             <b-navbar-item tag="div">
               <div class="buttons">
                 <a class="button is-primary">
