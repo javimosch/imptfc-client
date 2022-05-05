@@ -2,7 +2,7 @@
 LocationMap
 </template>
 <script>
-import LocationMap from "./LocationMap";
+import LocationMap from "./LocationMap.vue";
 export default {
   components: {
     LocationMap,

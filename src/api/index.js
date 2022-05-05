@@ -1,7 +1,7 @@
 import axios from "axios";
 import  funql  from "funql-api/client.cjs";
-const apiURL = process.env.VUE_APP_FUNQL_ENDPOINT;
-const fql = funql(process.env.VUE_APP_FUNQL_ENDPOINT,{
+const apiURL = import.meta.env.VITE_FUNQL_ENDPOINT;
+const fql = funql(import.meta.env.VITE_FUNQL_ENDPOINT,{
   //namespace:"imptfc"
 })
 
