@@ -1,4 +1,7 @@
-# imptfc-client
+# DEPRECATION NOTICE
+
+## Description
+
 
 Front-end for a football matches events organization tool.
 

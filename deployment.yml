@@ -23,14 +23,6 @@ spec:
           value: production
         command: ["npm","run","start"]
         workingDir: /app
-        volumeMounts:
-        - mountPath: /app
-          name: app-volume
-      volumes:
-      - name: app-volume
-        hostPath:
-          path: /var/mba/projects/imptfc
-          type: Directory
 ---
 apiVersion: v1
 kind: Service
@@ -50,7 +42,7 @@ metadata:
   name: imptfc
   annotations:
     kubernetes.io/ingress.class: "nginx"    
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 
 spec:
   tls:
