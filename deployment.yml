@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: imptfc
+spec:
+  selector:
+    matchLabels:
+      app: imptfc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: imptfc
+    spec:
+      containers:
+      - image: javimosch/imptfc:prod
+        imagePullPolicy: IfNotPresent
+        name: imptfc
+        ports:
+        - containerPort: 8080
+        env:
+        - name:	NODE_ENV
+          value: production
+        command: ["npm","run","start"]
+        workingDir: /app
+        volumeMounts:
+        - mountPath: /app
+          name: app-volume
+      volumes:
+      - name: app-volume
+        hostPath:
+          path: /var/mba/projects/imptfc
+          type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: imptfc
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: imptfc
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: imptfc
+  annotations:
+    kubernetes.io/ingress.class: "nginx"    
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+
+spec:
+  tls:
+  - hosts:
+    - mfc.misitioba.com
+    secretName: imptfc-secret-tls
+  rules:
+  - host: mfc.misitioba.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: imptfc
+            port:
+              number: 80

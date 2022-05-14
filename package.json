@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npx vue-cli-service build"
+    "build": "npx cross-env NODE_ENV=production vue-cli-service build --mode=production",
+    "start": "yes | npx serve dist -p 8080"
   },
   "dependencies": {
     "axios": "0.19.0",
