@@ -3,46 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "npx cross-env NODE_ENV=production vue-cli-service build --mode=production",
-    "start": "yes | npx serve dist -p 8080"
+    "build_old": "npx cross-env NODE_ENV=production vue-cli-service build --mode=production",
+    "start_old": "yes | npx serve dist -p 8080",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "dev": "vite --port 8081",
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "dependencies": {
+    "@vitejs/plugin-vue2": "^2.2.0",
     "axios": "0.19.0",
     "buefy": "0.8.5",
+    "eslint": "^8.35.0",
+    "eslint-plugin-vue": "^9.9.0",
     "funql-api": "^1.2.9",
     "moment-timezone": "^0.5.27",
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
+    "remove": "^0.1.5",
     "sass": "^1.43.4",
-    "sass-loader": "^8.0.0",
+    "vite": "^4.1.4",
     "vue": "^2.5.22",
     "vue-gallery": "^2.0.1",
     "vue-helmet": "^1.1.5",
-    "vue-no-ssr": "^1.1.1",
     "vue-router": "^3.1.3",
     "vuex": "^3.1.3"
-  },
-  "devDependencies": {
-    "@vue/cli-service": "^3.6.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.8.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
   },
   "postcss": {
     "plugins": {
@@ -55,5 +40,8 @@
     "not ie <= 8"
   ],
   "keywords": [],
-  "description": "International Montpellier FC Client"
+  "description": "International Montpellier FC Client",
+  "devDependencies": {
+    "autoprefixer": "^10.4.13"
+  }
 }

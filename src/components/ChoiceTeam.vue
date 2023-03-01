@@ -55,9 +55,9 @@
 
 <script>
 import funql from "funql-api/client.cjs";
-import TeamList from "./TeamList";
-
-const fql = funql(process.env.VUE_APP_FUNQL_ENDPOINT, {
+import TeamList from "./TeamList.vue";
+import moment from 'moment-timezone'
+const fql = funql(import.meta.env.VITE_FUNQL_ENDPOINT, {
         namespace: "imptfc"
       })
 
@@ -91,7 +91,7 @@ export default {
     dateFormatted() {
       return !this.stats.match.date
         ? ""
-        : require("moment-timezone")(this.stats.match.date)
+        : moment(this.stats.match.date)
             .tz("Europe/Paris")
             .utc()
             .locale("fr")
@@ -134,7 +134,7 @@ export default {
     getMatchDateFormat(format = "DD-MM-YYYY HH:mm:ss") {
       return !this.stats.match.date
         ? ""
-        : require("moment-timezone")(this.stats.match.date)
+        : moment(this.stats.match.date)
             .tz("Europe/Paris")
             .utc()
             .locale("fr")
@@ -148,7 +148,7 @@ export default {
       console.log(`MATCH DATE IS ${this.getMatchDateFormat()}`, {
         date: this.stats.match.date
       });
-      window.moment = require("moment-timezone");
+      window.moment = moment;
     },
     
     isCurrentSubcriberNew() {

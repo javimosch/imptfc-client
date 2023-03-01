@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import ChoiceTeam from "./ChoiceTeam";
-import Gallery from "./Gallery";
+import ChoiceTeam from "./ChoiceTeam.vue";
+import Gallery from "./Gallery.vue";
 export default {
   name: "App",
   components: {
