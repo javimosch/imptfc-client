@@ -16,7 +16,7 @@ spec:
       #        kubernetes.io/hostname: sd-origin
       containers:
       - image: javimosch/mufc-front:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: imptfc
         ports:
         - containerPort: 8080
