@@ -32,7 +32,7 @@
           <p class="is-size-6 subtitle" style="margin-top:20px;">Cliquez sur l'un des boutons</p>
 
           <div class="buttons is-centered">
-            <b-button type="is-success" @click="savePlayerSlot(1)" >Je m'inscris pour {{ $route.meta.eventTitle }} ({{stats.teamNumbers[0]}})</b-button>
+            <b-button class="btnSubscribe" @click="savePlayerSlot(1)" >Je m'inscris pour {{ $route.meta.eventTitle }} ({{stats.teamNumbers[0]}})</b-button>
 
             <!--
             <b-button type="is-info" @click="savePlayerSlot(2)">Équipe 2 ({{stats.teamNumbers[1]}})</b-button>
@@ -223,5 +223,10 @@ export default {
 
 .event-title{
   font-size:35px;
+}
+
+.btnSubscribe{
+  background-color: #0062cb;
+  color:white;
 }
 </style>

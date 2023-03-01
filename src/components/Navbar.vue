@@ -1,19 +1,28 @@
 <template>
   <div>
-    <b-notification type="is-warning" aria-close-label="Close notification">
-      Please respect the COVID guidelines. Check our
+    <div class="notification">
+      
+
+      Follow us on 
       <a
-        href="https://chat.whatsapp.com/IFbOaz8rvSH0Xnd7MIP9UK"
+        href="https://www.facebook.com/MontpellierUnitedFC"
         target="_blank"
-      >chat group</a> for more info.
-    </b-notification>
+      >Facebook</a>
+      - 
+      <a
+        href="https://www.instagram.com/montpellierunited/"
+        target="_blank"
+      >Instagram</a>
+
+
+    </div>
     <div class="container">
       <div class="columns is-centered is-mobile is-multiline">
         <div class="column">
           <b-navbar>
             <template slot="brand">
               <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                <h2 class="Title">Montpellier FC</h2>
+                <img src="@/assets/logo.png" alt="MUFC Logo" />
               </b-navbar-item>
             </template>
             <template slot="start">
@@ -62,5 +71,14 @@ export default {
 .notification {
   border-radius: 0;
   padding: 10px;
+}
+
+img{
+  max-height: 5rem;
+}
+.notification{
+  background-color:#edb932;
+  height:44px;
+  color:#0062cb;
 }
 </style>
