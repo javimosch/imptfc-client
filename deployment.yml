@@ -12,18 +12,18 @@ spec:
       labels:
         app: imptfc
     spec:
-#      nodeSelector:
-#        kubernetes.io/hostname: sd-origin
+      #      nodeSelector:
+      #        kubernetes.io/hostname: sd-origin
       containers:
-      - image: javimosch/imptfc:prod
+      - image: javimosch/mufc-front:1.0
         imagePullPolicy: IfNotPresent
         name: imptfc
         ports:
         - containerPort: 8080
         env:
-        - name:	NODE_ENV
+        - name: NODE_ENV
           value: production
-        command: ["npm","run","start"]
+        command: ["npm", "run", "start"]
         workingDir: /app
 ---
 apiVersion: v1
@@ -43,7 +43,7 @@ kind: Ingress
 metadata:
   name: imptfc
   annotations:
-    kubernetes.io/ingress.class: "public"    
+    kubernetes.io/ingress.class: "public"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 
 spec:
@@ -68,7 +68,7 @@ kind: Ingress
 metadata:
   name: imptfc-prod
   annotations:
-    kubernetes.io/ingress.class: "public"    
+    kubernetes.io/ingress.class: "public"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 
 spec:
