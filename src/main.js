@@ -18,16 +18,31 @@ const router = new VueRouter({
             name: 'home',
             component: () => import('./components/Home.vue'),
             meta: {
-                ssr: false
+                ssr: false,
+                eventTitle:'Sunday Match',
+                eventCode:'sundayMorningFootball',
+                eventDayOfWeek:0
             }
         },
+        {
+            path: '/play-saturday',
+            name: 'PlaySaturday',
+            component: () => import('./components/ChoiceTeam.vue'),
+            meta: {
+                ssr: false,
+                eventTitle:'Saturday Match',
+                eventCode:'saturdayMorningFootball',
+                eventDayOfWeek:6
+            }
+        },
+        /*
         {
             name: 'location',
             path: '/location', component: () => import('./components/Location.vue'),
             meta: {
                 ssr: false
             }
-        }
+        }*/
         /*{
             path: '/events',
             name: 'events',

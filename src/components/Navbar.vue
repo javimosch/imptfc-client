@@ -18,14 +18,18 @@
             </template>
             <template slot="start">
               <b-navbar-item>
-                <router-link :to="{name:'home'}">Home</router-link>
+                <router-link :to="{name:'home'}">Play on Sunday</router-link>
               </b-navbar-item>
+
+              <b-navbar-item>
+                <router-link :to="{name:'PlaySaturday'}">Play on Saturday</router-link>
+              </b-navbar-item>
+
+
               <b-navbar-item>
                 <router-link v-if="false" :to="{name:'events'}">Events</router-link>
               </b-navbar-item>
-              <b-navbar-item>
-                <router-link :to="{name:'location'}">Le terrain</router-link>
-              </b-navbar-item>
+            
             </template>
             <!--
           <template slot="end">

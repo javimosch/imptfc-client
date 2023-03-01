@@ -1,6 +1,9 @@
 <template>
   <div class="ChoiceTeam">
     <div class="container is-fluid">
+
+      <h1 class="event-title">{{ $route.meta.eventTitle }}</h1>
+      <p>{{ stats.match._id }}</p>
       
       <div v-show="mainNotice" class="notification" v-html="mainNotice.contents"></div>
 
@@ -29,14 +32,15 @@
           <p class="is-size-6 subtitle" style="margin-top:20px;">Cliquez sur l'un des boutons</p>
 
           <div class="buttons is-centered">
-            <b-button type="is-success" @click="savePlayerSlot(1)" >Équipe 1 ({{stats.teamNumbers[0]}})</b-button>
+            <b-button type="is-success" @click="savePlayerSlot(1)" >Je m'inscris pour {{ $route.meta.eventTitle }} ({{stats.teamNumbers[0]}})</b-button>
+
+            <!--
             <b-button type="is-info" @click="savePlayerSlot(2)">Équipe 2 ({{stats.teamNumbers[1]}})</b-button>
             <b-button type="is-info" @click="savePlayerSlot(3)">Équipe 3 ({{stats.teamNumbers[2]}})</b-button>
             <b-button type="is-info" @click="savePlayerSlot(4)">Équipe 4 ({{stats.teamNumbers[3]}})</b-button>
-
             <b-button v-show="false" type="is-danger" @click="savePlayerSlot(5)">Remplaçant ({{stats.teamNumbers[4]}})</b-button>
-
-            <b-button type="is-default" @click="savePlayerSlot(0)">Absence ({{stats.notGoing}})</b-button>
+            -->
+            <b-button type="is-danger" @click="savePlayerSlot(0)">Se désinscrire / Absence ({{stats.notGoing}})</b-button>
           </div>
         </div>
 
@@ -69,6 +73,7 @@ export default {
         notGoing: 0,
         teamNumbers: [0, 0, 0, 0],
         match: {
+          _id:null,
           players: []
         }
       },
@@ -136,7 +141,10 @@ export default {
             .format(format);
     },
     async update() {
-      Object.assign(this.$data, await fql("getAppHomeData"));
+      Object.assign(this.$data, await fql("getAppHomeData",{
+        eventCode:this.$route.meta.eventCode,
+        eventDayOfWeek: this.$route.meta.eventDayOfWeek
+      }));
       console.log(`MATCH DATE IS ${this.getMatchDateFormat()}`, {
         date: this.stats.match.date
       });
@@ -171,6 +179,7 @@ export default {
 
       var wantsToPlay = ![0].includes(teamNumber);
 
+      /*
       if (
         this.goingCount >= 44 &&
         wantsToPlay
@@ -180,7 +189,7 @@ export default {
           type: "is-info",
           duration: 5000
         });
-      }
+      }*/
 
       if (!this.form.nickname) {
         return this.$buefy.toast.open({
@@ -190,7 +199,8 @@ export default {
       }
       await fql("savePlayerSlot", {
         ...this.form,
-        teamNumber
+        teamNumber,
+        eventId: this.stats.match._id
       });
 
       this.$buefy.toast.open({
@@ -209,5 +219,9 @@ export default {
 <style lang="scss" scoped>
 .ChoiceTeam {
   padding: 20px;
+}
+
+.event-title{
+  font-size:35px;
 }
 </style>
