@@ -6,6 +6,7 @@ spec:
   selector:
     matchLabels:
       app: imptfc
+  revisionHistoryLimit: 1
   replicas: 1
   template:
     metadata:
@@ -18,6 +19,11 @@ spec:
       - image: javimosch/mufc-front:1.0
         imagePullPolicy: Always
         name: imptfc
+        resources:
+         limits:
+          cpu: 80m
+         requests: 
+          cpu: 50m
         ports:
         - containerPort: 8080
         env:
@@ -44,7 +50,7 @@ metadata:
   name: imptfc
   annotations:
     kubernetes.io/ingress.class: "public"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod-alt"
 
 spec:
   tls:
@@ -69,7 +75,7 @@ metadata:
   name: imptfc-prod
   annotations:
     kubernetes.io/ingress.class: "public"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod-alt"
 
 spec:
   tls:
