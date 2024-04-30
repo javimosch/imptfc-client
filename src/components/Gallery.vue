@@ -1,37 +1,56 @@
 <template>
   <div>
-    
-     <!-- <gallery :images="images" :index="index" @close="index = null"></gallery> -->
-    
+    <!-- <gallery :images="images" :index="index" @close="index = null"></gallery> -->
+
     <div
       class="image"
       v-for="(image, imageIndex) in images"
       :key="imageIndex"
       @click="index = imageIndex"
-      :style="{ backgroundImage: `url('${image}')`, width: '300px', height: '200px' }"
+      :style="{
+        backgroundImage: `url('${image}')`,
+        width: '300px',
+        height: '200px',
+      }"
     ></div>
   </div>
 </template>
- 
-<script>
 
+<script>
 //import * as VueGallery from "vue-gallery";
 export default {
-  
-  data: function() {
+  data: function () {
     return {
-      images: (()=>{
+      images: (() => {
         var len = 13;
-        var arr = []
-        //for(var x=0;x<len;x++) arr.push(require('../assets/pics/' + (x+1).toString() + '.jpg'))
-        return arr;
+        var arr = [];
+        //for (var x = 0; x < len; x++)
+          //arr.push(require("../assets/pics/" + (x + 1).toString() + ".jpg"));
+        //return arr;
+        return this.loadImages()
       })(),
-      index: null
+      index: null,
     };
   },
+  watch:{
+    index(){
+      this.openImageInNewTab()
+    }
+  },
+  methods: {
+    openImageInNewTab() {
+      if (this.index !== null) {
+        window.open(this.images[this.index], '_blank');
+      }
+    },
+    loadImages() {
+      const context = import.meta.globEager("../assets/pics/*.{jpg,png}");
+      return Object.entries(context).map(([path, image]) => image.default);
+    },
+  },
 };
-</script> 
- 
+</script>
+
 <style scoped lang="scss">
 .image {
   float: left;
@@ -40,13 +59,14 @@ export default {
   background-position: center center;
   border: 1px solid #ebebeb;
   margin: 5px;
+  cursor: pointer;
 }
-.gallery{
+.gallery {
   @media (max-width: 968px) {
-    display: flex!important;
-    justify-content: center!important;
-    flex-direction: column!important;
-    align-items: center!important;
+    display: flex !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 }
-</style> 
+</style>
