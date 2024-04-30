@@ -34,14 +34,6 @@ const router = new VueRouter({
                 eventDayOfWeek:6
             }
         },
-        /*
-        {
-            name: 'location',
-            path: '/location', component: () => import('./components/Location.vue'),
-            meta: {
-                ssr: false
-            }
-        }*/
         /*{
             path: '/events',
             name: 'events',

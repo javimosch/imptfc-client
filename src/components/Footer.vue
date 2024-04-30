@@ -1,12 +1,14 @@
-<template lang="pug">
-    footer
-      .centered
-        span Made with ❤️ by&nbsp;
-        a(href="https://misitioba.com" target="_blank") misitioba
+<template>
+<footer>
+  <div class="centered">
+    <span>Made with ❤️ by&nbsp;</span>
+    <a href="https://savoietech.fr" target="_blank">Savoietech.fr</a>
+  </div>
+</footer>
 </template>
 <style lang="scss" scoped>
 footer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 </style>
