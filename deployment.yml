@@ -16,14 +16,14 @@ spec:
       #      nodeSelector:
       #        kubernetes.io/hostname: sd-origin
       containers:
-      - image: javimosch/mufc-front:1.0
+      - image: javimosch/mufc-front:1.0.4
         imagePullPolicy: Always
         name: imptfc
         resources:
-         limits:
-          cpu: 80m
-         requests: 
-          cpu: 50m
+          limits:
+            cpu: 80m
+          requests:
+            cpu: 50m
         ports:
         - containerPort: 8080
         env:
