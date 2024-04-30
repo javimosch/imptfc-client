@@ -16,7 +16,7 @@ spec:
       #      nodeSelector:
       #        kubernetes.io/hostname: sd-origin
       containers:
-      - image: javimosch/mufc-front:1.0.4
+      - image: javimosch/mufc-front:1.0.5
         imagePullPolicy: Always
         name: imptfc
         resources:
