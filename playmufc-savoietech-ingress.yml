@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: playmufc-savoietech-ingress
+  annotations:
+    kubernetes.io/ingress.class: "public"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod-alt"
+
+spec:
+  tls:
+  - hosts:
+    - playmufc.savoietech.fr
+    secretName: playmufc-savoietech-secret-tls
+  rules:
+  - host: playmufc.savoietech.fr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: imptfc
+            port:
+              number: 80
+
