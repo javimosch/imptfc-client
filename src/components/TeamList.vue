@@ -1,6 +1,7 @@
  <template>
   <b-table
-    :data="isEmpty ? [] : data"
+    :data="data"
+    :columns="columns"
     :bordered="isBordered"
     :striped="isStriped"
     :narrowed="isNarrowed"
@@ -9,14 +10,6 @@
     :focusable="isFocusable"
     :mobile-cards="hasMobileCards"
   >
-    <template slot-scope="props">
-      
-      <b-table-column field="nickname" label="Surnom">{{ props.row.nickname }}</b-table-column>
-      <b-table-column field="joined" label="Subscribed">{{ props.row.joinedFormatted }}</b-table-column>
-      <b-table-column field="last_name" label="Équipe">{{ props.row.teamNumberFormatted }}</b-table-column>
-
-    </template>
-
     <template slot="empty">
       <section class="section">
         <div class="content has-text-grey has-text-centered">
@@ -46,8 +39,28 @@ export default {
       isHoverable: false,
       isLoading: false,
       isFocusable: false,
-      hasMobileCards: false
+      hasMobileCards: false,
+      columns: [
+        {
+          field: 'nickname',
+          label: 'Surnom',
+          width: 'auto', 
+        },
+        {
+          field: 'joinedFormatted',
+          label: 'Subscribed',
+          width: 'auto',
+        },
+        {
+          field: 'teamNumberFormatted',
+          label: 'Équipe',
+          width: 'auto',
+        }
+      ]
     };
+  },
+  mounted(){
+    console.log(this.data)
   }
 };
 </script>
