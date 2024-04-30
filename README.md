@@ -1,9 +1,11 @@
-# DEPRECATION NOTICE
-
 ## Description
 
-
 Front-end for a football matches events organization tool.
+
+## Tech stack
+
+- Vue 2.7
+- ViteJS
 
 ## Requires
 
@@ -11,6 +13,6 @@ Front-end for a football matches events organization tool.
 
 ## Author
 
-- https://misitioba.com
+- https://savoietech.fr
 
 
