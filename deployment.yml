@@ -29,7 +29,6 @@ spec:
         env:
         - name: NODE_ENV
           value: production
-        command: ["npm", "run", "start"]
         workingDir: /app
 ---
 apiVersion: v1
