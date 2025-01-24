@@ -13,11 +13,11 @@ Front-end for a football matches events organization tool.
 
 ## Compile docker image
 
-docker build -t javimosch/mufc-front:1.0 .
+bun i && bun run build && docker build -t javimosch/mufc-front:1.0.11 .
 
 ## Docker
 
-docker run -d --restart=always --name playmufc -p "3001:8080" javimosch/mufc-front:1.0.9
+docker run -d --restart=always --name playmufc -p "3001:8080" javimosch/mufc-front:1.0.11
 
 ## Author
 
