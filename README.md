@@ -13,7 +13,7 @@ Front-end for a football matches events organization tool.
 
 ## Compile docker image
 
-bun i && bun run build && docker build -t javimosch/mufc-front:1.0.11 .
+bun i && bun run build && docker build -t javimosch/mufc-front:1.0.11 . && docker push javimosch/mufc-front:1.0.11
 
 ## Docker
 
