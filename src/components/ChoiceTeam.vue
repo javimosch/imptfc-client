@@ -1,52 +1,70 @@
 <template>
-  <div class="ChoiceTeam">
-    <div class="container is-fluid">
-
-      <h1 class="event-title">{{ $route.meta.eventTitle }}</h1>
-      <p>{{ stats.match._id }}</p>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-white shadow-xl rounded-xl p-8">
+      <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center tracking-tight">{{ $route.meta.eventTitle }}</h1>
       
-      <div v-show="mainNotice" class="notification" v-html="mainNotice.contents"></div>
+      <div v-show="mainNotice" class="bg-blue-50 border-l-4 border-blue-500 text-blue-700 p-4 mb-8 rounded-r-lg shadow-sm" v-html="mainNotice.contents"></div>
 
-      <div class="columns is-multiline is-mobile is-centered">
-        <div class="column is-full-mobile is-half-table is-half-desktop">
-          <div>
-            <b-field label="Ton surnom">
-              <b-input v-model="form.nickname"></b-input>
-            </b-field>
-            <b-field label="Ton portable">
-              <b-input
+      <div class="grid md:grid-cols-2 gap-10">
+        <div class="space-y-8">
+          <div class="space-y-4">
+            <div class="relative">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Ton surnom</label>
+              <input 
+                type="text" 
+                v-model="form.nickname"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200"
+                placeholder="Entre ton surnom..."
+              >
+            </div>
+            <!-- Hidden fields
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Ton portable</label>
+              <input
+                type="text"
                 placeholder="En cas de communication... (écrire une fois suffit)"
                 v-model="form.phone"
-              ></b-input>
-            </b-field>
-
-            <b-field label="Ton Email">
-              <b-input
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+              >
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Ton Email</label>
+              <input
+                type="email"
                 placeholder="En cas de communication... (écrire une fois suffit)"
                 v-model="form.email"
-              ></b-input>
-            </b-field>
-
-          </div>
-          <hr />
-          <p class="is-size-6 subtitle" style="margin-top:20px;">Cliquez sur l'un des boutons</p>
-
-          <div class="buttons is-centered">
-            <b-button class="btnSubscribe" @click="savePlayerSlot(1)" >Je m'inscris pour {{ $route.meta.eventTitle }} ({{stats.teamNumbers[0]}})</b-button>
-
-            <!--
-            <b-button type="is-info" @click="savePlayerSlot(2)">Équipe 2 ({{stats.teamNumbers[1]}})</b-button>
-            <b-button type="is-info" @click="savePlayerSlot(3)">Équipe 3 ({{stats.teamNumbers[2]}})</b-button>
-            <b-button type="is-info" @click="savePlayerSlot(4)">Équipe 4 ({{stats.teamNumbers[3]}})</b-button>
-            <b-button v-show="false" type="is-danger" @click="savePlayerSlot(5)">Remplaçant ({{stats.teamNumbers[4]}})</b-button>
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+              >
+            </div>
             -->
-            <b-button type="is-danger" @click="savePlayerSlot(0)">Se désinscrire / Absence ({{stats.notGoing}})</b-button>
+          </div>
+
+          <hr class="border-gray-200" />
+          
+          <p class="text-sm text-gray-500 italic mb-3">Cliquez sur l'un des boutons</p>
+
+          <div class="space-y-4">
+            <button 
+              @click="savePlayerSlot(1)"
+              class="w-full bg-primary text-white px-6 py-3.5 rounded-lg font-medium hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
+            >
+              Je m'inscris pour {{ $route.meta.eventTitle }} ({{stats.teamNumbers[0]}})
+            </button>
+
+            <button 
+              @click="savePlayerSlot(0)"
+              class="w-full bg-red-500 text-white px-6 py-3.5 rounded-lg font-medium hover:bg-red-600 transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
+            >
+              Se désinscrire / Absence ({{stats.notGoing}})
+            </button>
           </div>
         </div>
 
-        <div class="column is-full-mobile is-half-table is-half-desktop">
+        <div>
           <team-list :data="formattedData" />
-          <div class="notification">Il y a {{goingCount}} joueurs qui vont au prochain match</div>
+          <div class="mt-6 bg-green-50 border-l-4 border-green-500 text-green-700 p-4 rounded-r-lg shadow-sm">
+            Il y a {{goingCount}} joueurs qui vont au prochain match
+          </div>
         </div>
       </div>
     </div>
@@ -216,17 +234,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.ChoiceTeam {
-  padding: 20px;
-}
 
-.event-title{
-  font-size:35px;
-}
-
-.btnSubscribe{
-  background-color: #0062cb;
-  color:white;
-}
+<style>
+/* Remove any scoped styles as we're using Tailwind classes */
 </style>

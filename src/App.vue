@@ -1,13 +1,9 @@
 <template>
-  <div> 
+  <div class="min-h-screen bg-gray-50 flex flex-col"> 
     <Navbar />
-    <div class="container">
-      <div class="columns is-centered is-mobile is-multiline">
-        <div class="column">
-          <router-view></router-view>
-        </div>
-      </div>
-    </div>
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <router-view></router-view>
+    </main>
     <Footer/>
   </div>
 </template>

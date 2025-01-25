@@ -1,0 +1,6 @@
+[submodule "api"]
+	path = api
+	url = git@github.com:javimosch/imptfc.git
+[submodule "backend"]
+	path = backend
+	url = git@github.com:javimosch/imptfc.git
