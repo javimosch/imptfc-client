@@ -8,7 +8,17 @@
     "start": "bunx serve -p 8080 dist"
   },
   "dependencies": {
-    "serve": "^14.2.3"
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5",
+    "serve": "^14.2.3",
+    "axios": "^1.6.8",
+    "funql-api": "^1.2.9",
+    "moment-timezone": "^0.5.27"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.9",
+    "autoprefixer": "^10.4.13"
   },
   "postcss": {
     "plugins": {
@@ -21,17 +31,5 @@
     "not ie <= 8"
   ],
   "keywords": [],
-  "description": "International Montpellier FC Client",
-  "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "@vitejs/plugin-vue2": "^2.2.0",
-    "axios": "^1.6.8",
-    "buefy": "^0.9.29",
-    "funql-api": "^1.2.9",
-    "moment-timezone": "^0.5.27",
-    "sass": "^1.43.4",
-    "vite": "^4.1.4",
-    "vue": "^2.7.16",
-    "vue-router": "^3.1.3"
-  }
+  "description": "International Montpellier FC Client"
 }

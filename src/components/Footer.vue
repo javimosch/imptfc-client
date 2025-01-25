@@ -12,17 +12,14 @@ defineProps({
 </script>
 
 <template>
-<footer>
-  <div class="centered">
-    <span>Made with {{ message }} by&nbsp;</span>
-    <a :href="link" target="_blank">Savoietech.fr</a>
-  </div>
-</footer>
+  <footer class="py-8 mt-auto">
+    <div class="flex justify-center items-center text-gray-600">
+      <span>Made with {{ message }} by&nbsp;</span>
+      <a :href="link" target="_blank" class="text-[#35388e] hover:text-[#35388e]/80 underline">Savoietech.fr</a>
+    </div>
+  </footer>
 </template>
 
 <style lang="scss" scoped>
-footer {
-  display: flex;
-  justify-content: center;
-}
+/* Removed the original styling to make way for Tailwind CSS */
 </style>

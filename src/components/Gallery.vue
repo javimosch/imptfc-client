@@ -2,17 +2,17 @@
   <div>
     <!-- <gallery :images="images" :index="index" @close="index = null"></gallery> -->
 
-    <div
-      class="image"
-      v-for="(image, imageIndex) in images"
-      :key="imageIndex"
-      @click="index = imageIndex"
-      :style="{
-        backgroundImage: `url('${image}')`,
-        width: '300px',
-        height: '200px',
-      }"
-    ></div>
+    <div class="gallery-grid">
+      <div
+        class="image"
+        v-for="(image, imageIndex) in images"
+        :key="imageIndex"
+        @click="index = imageIndex"
+        :style="{
+          backgroundImage: `url('${image}')`
+        }"
+      ></div>
+    </div>
   </div>
 </template>
 
@@ -52,13 +52,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
 .image {
-  float: left;
+  height: 200px;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center;
   border: 1px solid #ebebeb;
-  margin: 5px;
   cursor: pointer;
 }
 .gallery {
